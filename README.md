@@ -28,7 +28,7 @@ API symfony
 
 3. **Configuration**
 
-    - Configurez les informations de connexion à la base de données dans le fichier `.env`.
+    - Configurez les informations de connexion à la base de données dans le fichier `.env` et `.env.test` en suivant les modèles `.env.example` et `.env.test.example`.
 
     - Générez la base de données :
 
