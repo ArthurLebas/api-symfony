@@ -62,8 +62,10 @@ class getOneTest extends WebTestCase
 
         // Vérifie que les données de la réponse sont celles qu'on attend'
         $this->assertEquals(1, $data['id']);
-        $expectedStatusValues = ['completed', 'cancelled', 'completed'];
+        $expectedStatusValues = ['created', 'cancelled', 'completed'];
+
         $this->assertTrue(is_string($data['status']));
+        $this->assertTrue(in_array($data['status'], $expectedStatusValues));
         $this->assertTrue(is_string($data['lastName']));
         $this->assertTrue(is_string($data['firstName']));
         $this->assertTrue(is_string($data['addressLine1']));
