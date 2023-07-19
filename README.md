@@ -1,6 +1,4 @@
-# Nom du Projet Symfony
-
-API symfony
+# API symfony
 
 ## Prérequis
 
