@@ -80,7 +80,7 @@ class CustomerOrder
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['customerOrder:read', 'customerOrder:upDate'])]
+    #[Groups(['customerOrder:read'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\OneToMany(mappedBy: 'customerOrder', targetEntity: Parcel::class, cascade: ['persist'])]
@@ -236,7 +236,6 @@ class CustomerOrder
     public function removeParcel(Parcel $parcel): static
     {
         if ($this->parcels->removeElement($parcel)) {
-            // set the owning side to null (unless already changed)
             if ($parcel->getCustomerOrder() === $this) {
                 $parcel->setCustomerOrder(null);
             }

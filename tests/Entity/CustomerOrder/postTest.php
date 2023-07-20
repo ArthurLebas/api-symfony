@@ -8,9 +8,9 @@ class postTest extends WebTestCase
 
     private $client;
 
+    // Prépare l'env de test
     protected function setUp(): void
     {
-        // $this->client = HttpClient::create();
         $this->client = HttpClient::create(['verify_peer' => false]);
     }
 
@@ -48,7 +48,6 @@ class postTest extends WebTestCase
         $this->assertEquals(201, $statusCode);
         $this->assertEquals('application/ld+json; charset=utf-8', $contentType);
 
-
         $this->assertEquals('created', $data['status']);
         $this->assertEquals(12345, $data['orderNumber']);
         $this->assertEquals('Doe', $data['lastName']);
@@ -60,7 +59,7 @@ class postTest extends WebTestCase
         $this->assertIsArray($data['parcels']);
         $this->assertNotEmpty($data['parcels']);
 
-        $firstParcel = $data['parcels'][0]; // Accéder au premier colis
+        $firstParcel = $data['parcels'][0]; 
 
         $this->assertEquals(123456789, $firstParcel['trackingNumber']);
         $this->assertEquals(2000, $firstParcel['weight']);

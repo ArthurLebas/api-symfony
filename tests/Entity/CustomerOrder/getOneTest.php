@@ -9,7 +9,7 @@ class getOneTest extends WebTestCase
 {
     private $client;
 
-    // prépare l'env de test
+    // Prépare l'env de test
     protected function setUp(): void
     {
         parent::setUp();
@@ -29,7 +29,6 @@ class getOneTest extends WebTestCase
         $customerOrder->setcity('Paris');
         $customerOrder->setpostalCode(75000);
         $customerOrder->setcreatedAt(new \DateTimeImmutable('2023-07-19 12:34:56'));
-        $customerOrder->setupdatedAt(new \DateTimeImmutable('2023-07-19 12:34:56'));
 
         $parcel = new Parcel();
         $parcel->setTrackingNumber(12345);
@@ -48,7 +47,6 @@ class getOneTest extends WebTestCase
     {
         $response = $this->client->request(
             'GET',
-            // On suppose qu'un CustomerOrder avec l'id 1 existe en base de données
             "https://127.0.0.1:8000/api/customer_orders/1"
         );
 
@@ -57,7 +55,7 @@ class getOneTest extends WebTestCase
         // Récupère les données de la réponse HTTP et les décode en tant que tableau
         $data = json_decode($response->getContent(), true);
 
-        $this->assertEquals(200, $statusCode);  // Statut HTTP pour une requête GET réussie doit être 200
+        $this->assertEquals(200, $statusCode); 
         $this->assertEquals('application/ld+json; charset=utf-8', $contentType);
 
         // Vérifie que les données de la réponse sont celles qu'on attend'
@@ -72,7 +70,6 @@ class getOneTest extends WebTestCase
         $this->assertTrue(is_string($data['city']));
         $this->assertTrue(is_int($data['postalCode']));
         $this->assertTrue(is_string($data['createdAt']));
-        // $this->assertTrue(isset($data['updatedAt']) && (is_string($data['updatedAt']) || is_null($data['updatedAt'])));        
         // Parcel
         $this->assertTrue(is_array($data['parcels']));
         foreach ($data['parcels'] as $parcel) {
